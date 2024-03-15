@@ -30,7 +30,7 @@ export default function GhostList() {
   return (
     <div
       ref={listRef}
-      className="flex-column flex flex-wrap justify-center gap-4 overflow-y-auto"
+      className="flex-column flex flex-wrap justify-center gap-4 overflow-y-auto rounded-2xl "
     >
       {ghosts.map((ghost) => (
         <Ghost key={ghost.name} ghost={ghost}></Ghost>
