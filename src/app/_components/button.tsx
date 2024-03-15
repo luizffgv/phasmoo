@@ -3,6 +3,7 @@ import Link from "next/link";
 export type Props = {
   children: React.ReactNode;
   "aria-label"?: string;
+  className?: string;
 } & (
   | {
       /** The book will have the primary color. */
@@ -51,14 +52,14 @@ export default function Button(props: Props) {
         <Link
           href={props.href}
           target={props.target}
-          className={`rounded-xl px-4 py-2 font-bold text-white transition-all ${bg} ${shadow}`}
+          className={`rounded-xl px-4 py-2 font-bold text-white transition-all ${bg} ${shadow} ${props.className ?? ""}`}
           aria-label={props["aria-label"]}
         >
           {props.children}
         </Link>
       ) : (
         <button
-          className={`rounded-xl px-4 py-2 font-bold text-white transition-all ${bg} ${shadow}`}
+          className={`rounded-xl px-4 py-2 font-bold text-white transition-all ${bg} ${shadow} ${props.className ?? ""}`}
           aria-label={props["aria-label"]}
           onClick={props.onClick}
         >

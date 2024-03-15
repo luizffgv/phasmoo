@@ -22,6 +22,7 @@ export default function EvidenceButton({ evidenceID }: Props) {
 
   return (
     <Button
+      className="grow basis-0"
       onClick={() => {
         const state = evidences.value[evidenceID];
         const newState =
