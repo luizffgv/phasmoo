@@ -1,11 +1,12 @@
 "use client";
 
+import Button from "./button";
 import Card from "./card";
 
 export default function ThemeSwitcher() {
   return (
     <Card>
-      <button
+      <Button
         onClick={() => {
           const theme = document.documentElement.classList.toggle("dark")
             ? "dark"
@@ -14,7 +15,7 @@ export default function ThemeSwitcher() {
         }}
       >
         Toggle theme
-      </button>
+      </Button>
     </Card>
   );
 }
