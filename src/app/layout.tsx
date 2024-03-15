@@ -24,7 +24,9 @@ export default function RootLayout({
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script src="/initial-theme-applier.js"></script>
       </head>
-      <body className={`${quicksand.className} bg-slate-200 dark:bg-slate-900`}>
+      <body
+        className={`${quicksand.className} transition-colors bg-slate-200 dark:bg-slate-900`}
+      >
         <ThemeSwitcher></ThemeSwitcher>
         {children}
       </body>
