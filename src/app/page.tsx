@@ -4,7 +4,7 @@ import EvidenceProvider from "./_components/providers/evidence-provider";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col gap-16 items-center p-24">
+    <main className="flex min-h-screen flex-col gap-16 items-center">
       <EvidenceProvider>
         <EvidencePicker></EvidencePicker>
         <GhostList></GhostList>

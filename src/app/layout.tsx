@@ -25,7 +25,7 @@ export default function RootLayout({
         <script src="/initial-theme-applier.js"></script>
       </head>
       <body
-        className={`${quicksand.className} transition-colors bg-slate-200 dark:bg-slate-900 dark:text-white`}
+        className={`${quicksand.className} flex flex-col items-center transition-colors bg-slate-200 dark:bg-slate-900 dark:text-white p-4 gap-8`}
       >
         <ThemeSwitcher></ThemeSwitcher>
         {children}
