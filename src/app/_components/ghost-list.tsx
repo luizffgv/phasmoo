@@ -3,6 +3,7 @@
 import { EvidenceContext } from "@/contexts/evidence";
 import { GHOSTS, filter } from "@/lib/phasmo";
 import { useContext, useLayoutEffect, useMemo, useRef } from "react";
+
 import Ghost from "./ghost";
 
 export default function GhostList() {
@@ -24,14 +25,21 @@ export default function GhostList() {
     ).play();
   }, [evidences]);
 
+  const ghosts = GHOSTS.filter(ghostFilter);
+
   return (
     <div
       ref={listRef}
       className="flex-column flex flex-wrap justify-center gap-4 overflow-y-auto"
     >
-      {GHOSTS.filter(ghostFilter).map((ghost) => (
+      {ghosts.map((ghost) => (
         <Ghost key={ghost.name} ghost={ghost}></Ghost>
       ))}
+      {ghosts.length === 0 ? (
+        <strong className="text-xl">Skill issue</strong>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
