@@ -24,7 +24,7 @@ export default function EvidenceProvider({ children }: Props) {
           evidence.value[id] = state;
           setEvidence({ ...evidence });
         },
-        evidences: evidence.value,
+        evidences: evidence,
       }}
     >
       {children}

@@ -23,7 +23,7 @@ export default function EvidenceButton({ evidenceID }: Props) {
   return (
     <Button
       onClick={() => {
-        const state = evidences[evidenceID];
+        const state = evidences.value[evidenceID];
         const newState =
           state == EvidenceState.ABSENT
             ? EvidenceState.INDEFINITE
@@ -32,7 +32,7 @@ export default function EvidenceButton({ evidenceID }: Props) {
             : EvidenceState.ABSENT;
         setEvidence(evidenceID, newState);
       }}
-      {...stateToButtonProps(evidences[evidenceID])}
+      {...stateToButtonProps(evidences.value[evidenceID])}
     >
       {EvidenceLabels[evidenceID]}
     </Button>
