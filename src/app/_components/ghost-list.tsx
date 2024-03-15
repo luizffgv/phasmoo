@@ -20,14 +20,14 @@ export default function GhostList() {
     new Animation(
       new KeyframeEffect(listRef.current, [{ opacity: 0 }, {}], {
         duration: 250,
-      })
+      }),
     ).play();
   }, [evidences]);
 
   return (
     <div
       ref={listRef}
-      className="overflow-y-auto flex flex-column flex-wrap gap-4"
+      className="flex-column flex flex-wrap gap-4 overflow-y-auto"
     >
       {GHOSTS.filter(ghostFilter).map((ghost) => (
         <Ghost key={ghost.name} ghost={ghost}></Ghost>

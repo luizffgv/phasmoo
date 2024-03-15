@@ -1,6 +1,6 @@
 export default function Card({ children }: { children?: React.ReactNode }) {
   return (
-    <div className="transition-colors w-fit max-w-full p-4 bg-slate-50 dark:bg-slate-700 rounded-2xl shadow-md">
+    <div className="w-fit max-w-full rounded-2xl bg-slate-50 p-4 shadow-md transition-colors dark:bg-slate-700">
       {children}
     </div>
   );

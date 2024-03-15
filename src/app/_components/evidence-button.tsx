@@ -6,7 +6,7 @@ import Button from "./button";
 import { EvidenceID, EvidenceLabels, EvidenceState } from "@/lib/phasmo";
 
 function stateToButtonProps(
-  state: EvidenceState
+  state: EvidenceState,
 ): { weak: true } | { danger: true } | {} {
   if (state == EvidenceState.ABSENT) return { danger: true };
   if (state == EvidenceState.INDEFINITE) return { weak: true };
@@ -28,8 +28,8 @@ export default function EvidenceButton({ evidenceID }: Props) {
           state == EvidenceState.ABSENT
             ? EvidenceState.INDEFINITE
             : state == EvidenceState.INDEFINITE
-            ? EvidenceState.PRESENT
-            : EvidenceState.ABSENT;
+              ? EvidenceState.PRESENT
+              : EvidenceState.ABSENT;
         setEvidence(evidenceID, newState);
       }}
       {...stateToButtonProps(evidences.value[evidenceID])}

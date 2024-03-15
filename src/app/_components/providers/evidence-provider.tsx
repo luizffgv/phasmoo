@@ -13,7 +13,7 @@ export default function EvidenceProvider({ children }: Props) {
   const [evidence, setEvidence] = useState<{ value: EvidenceStateMap }>({
     value: Object.assign(
       {},
-      ...EvidenceID.map((id) => ({ [id]: EvidenceState.INDEFINITE }))
+      ...EvidenceID.map((id) => ({ [id]: EvidenceState.INDEFINITE })),
     ),
   });
 

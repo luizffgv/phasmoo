@@ -8,7 +8,7 @@ export interface Props {
 export default function Ghost({ ghost }: Props) {
   return (
     <Card>
-      <div className="font-bold text-xl text-center">{ghost.name}</div>
+      <div className="text-center text-xl font-bold">{ghost.name}</div>
       {ghost.evidences.map((id) => (
         <div key={id}>{EvidenceLabels[id]}</div>
       ))}

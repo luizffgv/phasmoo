@@ -15,7 +15,7 @@ export const EvidenceContext = createContext<EvidenceContext>({
   evidences: {
     value: Object.assign(
       {},
-      ...EvidenceID.map((id) => ({ [id]: EvidenceState.INDEFINITE }))
+      ...EvidenceID.map((id) => ({ [id]: EvidenceState.INDEFINITE })),
     ),
   },
 });

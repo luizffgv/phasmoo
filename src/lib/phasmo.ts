@@ -106,7 +106,7 @@ export type EvidenceStateMap = { [id in EvidenceID]: EvidenceState };
  */
 export function filter(
   evidences: EvidenceStateMap,
-  availableEvidences: 1 | 2 | 3
+  availableEvidences: 1 | 2 | 3,
 ): (ghost: Ghost) => boolean {
   const present = Object.entries(evidences)
     .filter(([_, state]) => state == EvidenceState.PRESENT)
@@ -143,7 +143,7 @@ export function filter(
       const obtainableRemainingEvidences =
         availableEvidences -
         Object.values(evidences).filter(
-          (found) => found == EvidenceState.PRESENT
+          (found) => found == EvidenceState.PRESENT,
         ).length;
 
       if (isAbsent || (!isPresent && obtainableRemainingEvidences < 1))
