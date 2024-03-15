@@ -44,7 +44,7 @@ export enum EvidenceState {
 const MAX_EVIDENCES = 3;
 
 /** All ghosts in the game and their evidences. */
-const Ghosts = [
+export const GHOSTS = [
   { name: "Spirit", evidences: ["emf", "box", "writing"] },
   { name: "Wraith", evidences: ["emf", "box", "dots"] },
   { name: "Phantom", evidences: ["box", "uv", "dots"] },
