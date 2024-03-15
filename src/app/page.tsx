@@ -4,11 +4,11 @@ import EvidenceProvider from "./_components/providers/evidence-provider";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col gap-16 items-center">
-      <EvidenceProvider>
-        <EvidencePicker></EvidencePicker>
+    <EvidenceProvider>
+      <main className="overflow-y-auto max-w-full grow flex flex-col sm:flex-col-reverse gap-8 items-center justify-between sm:justify-end">
         <GhostList></GhostList>
-      </EvidenceProvider>
-    </main>
+        <EvidencePicker></EvidencePicker>
+      </main>
+    </EvidenceProvider>
   );
 }

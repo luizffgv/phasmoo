@@ -25,7 +25,10 @@ export default function GhostList() {
   }, [evidences]);
 
   return (
-    <div ref={listRef} className="flex flex-column flex-wrap gap-4">
+    <div
+      ref={listRef}
+      className="overflow-y-auto flex flex-column flex-wrap gap-4"
+    >
       {GHOSTS.filter(ghostFilter).map((ghost) => (
         <Ghost key={ghost.name} ghost={ghost}></Ghost>
       ))}
