@@ -44,14 +44,14 @@ export default function Button(props: Props) {
         <Link
           href={props.href}
           target={props.target}
-          className={`px-4 py-2 rounded-xl text-white font-bold ${bg}`}
+          className={`px-4 py-2 rounded-xl text-white font-bold transition-colors ${bg}`}
           aria-label={props["aria-label"]}
         >
           {props.children}
         </Link>
       ) : (
         <button
-          className={`px-4 py-2 rounded-xl text-white font-bold ${bg}`}
+          className={`px-4 py-2 rounded-xl text-white font-bold transition-colors ${bg}`}
           aria-label={props["aria-label"]}
           onClick={props.onClick}
         >
