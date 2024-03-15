@@ -25,7 +25,7 @@ export default function RootLayout({
         <script src="/initial-theme-applier.js"></script>
       </head>
       <body
-        className={`${quicksand.className} transition-colors bg-slate-200 dark:bg-slate-900`}
+        className={`${quicksand.className} transition-colors bg-slate-200 dark:bg-slate-900 dark:text-white`}
       >
         <ThemeSwitcher></ThemeSwitcher>
         {children}
