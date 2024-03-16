@@ -10,7 +10,7 @@ const quicksand = Quicksand({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://phasmo.luizf.dev"),
-  title: "Spirit Box Web",
+  title: "Phasmoo",
   description: "Identify Phasmophobia ghosts here.",
 };
 
