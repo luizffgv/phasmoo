@@ -5,12 +5,18 @@ import { GHOSTS, filter } from "@/lib/phasmo";
 import { useContext, useLayoutEffect, useMemo, useRef } from "react";
 
 import Ghost from "./ghost";
+import { EvidenceCountContext } from "@/contexts/evidence-count";
 
 export default function GhostList() {
   const { evidences } = useContext(EvidenceContext);
+  const { count } = useContext(EvidenceCountContext);
+
   const listRef = useRef<HTMLDivElement>(null);
 
-  const ghostFilter = useMemo(() => filter(evidences.value, 3), [evidences]);
+  const ghostFilter = useMemo(
+    () => filter(evidences.value, count),
+    [count, evidences],
+  );
 
   useLayoutEffect(() => {
     if (listRef.current == null) {
@@ -23,7 +29,7 @@ export default function GhostList() {
         duration: 250,
       }),
     ).play();
-  }, [evidences]);
+  }, [count, evidences]);
 
   const ghosts = GHOSTS.filter(ghostFilter);
 
