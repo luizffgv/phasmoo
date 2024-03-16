@@ -118,7 +118,11 @@ function getEvidenceIcon(
         : "fill-stone-200 dark:fill-stone-700";
 
   return (
-    <div className={color} aria-label={EvidenceLabels[id]}>
+    <div
+      className={color}
+      title={EvidenceLabels[id]}
+      aria-label={EvidenceLabels[id]}
+    >
       {evidenceIcons[id]}
     </div>
   );
