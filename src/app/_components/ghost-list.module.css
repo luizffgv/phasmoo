@@ -1,0 +1,25 @@
+@keyframes move-in {
+  0% {
+    translate: 0 20px;
+  }
+
+  75% {
+    translate: 0 0;
+  }
+}
+
+@keyframes move-out {
+  25% {
+    translate: 0 0;
+  }
+
+  100% {
+    translate: 0 -20px;
+  }
+}
+
+.card {
+  animation: move-in, move-out;
+  animation-timeline: view();
+  animation-range: entry, exit;
+}

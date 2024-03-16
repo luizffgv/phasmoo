@@ -10,6 +10,7 @@ import {
 import Card from "./card";
 import { ReactNode, useContext } from "react";
 import { EvidenceContext } from "@/contexts/evidence";
+import styles from "./ghost-list.module.css";
 
 const evidenceIcons = {
   emf: (
@@ -131,7 +132,7 @@ export default function Ghost({ ghost }: Props) {
   const { evidences } = useContext(EvidenceContext);
 
   return (
-    <Card className="max-w-[384px] grow">
+    <Card className={`max-w-[384px] grow ${styles.card}`}>
       <div className="flex flex-col items-center gap-4">
         <div className="text-center text-xl font-bold">{ghost.name}</div>
         <div className="flex flex-row gap-4">
