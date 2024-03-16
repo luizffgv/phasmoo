@@ -3,7 +3,7 @@
 import { EvidenceCountContext } from "@/contexts/evidence-count";
 import { useContext } from "react";
 import Card from "./card";
-import Button from "./button";
+import RadioButton from "./radio-button";
 
 export default function EvidenceCountPicker() {
   const { count, setCount } = useContext(EvidenceCountContext);
@@ -12,15 +12,17 @@ export default function EvidenceCountPicker() {
     <Card className="w-fit">
       <div className="flex flex-row flex-wrap items-baseline justify-center gap-x-8 gap-y-2">
         <strong>Available evidence</strong>
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row gap-2" role="radiogroup">
           {([1, 2, 3] as const).map((num) => (
-            <Button
+            <RadioButton
               key={num}
               onClick={() => setCount(num)}
-              {...(num == count ? { primary: true } : { weak: true })}
+              checked={num == count}
+              aria-label={`${num} evidence`}
+              aria-labelledby="y"
             >
               {num}
-            </Button>
+            </RadioButton>
           ))}
         </div>
       </div>
