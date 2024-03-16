@@ -5,7 +5,7 @@ import {
   EvidenceLabels,
   EvidenceState,
   EvidenceStateMap,
-  Ghost,
+  type Ghost,
 } from "@/lib/phasmo";
 import Card from "./card";
 import { ReactNode, useContext } from "react";
