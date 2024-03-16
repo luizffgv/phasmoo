@@ -16,7 +16,7 @@ export default function EvidencePicker() {
     <Card
       className={`max-w-full transition-opacity ${ready ? "opacity-100" : "opacity-0"}`}
     >
-      <div className="flex w-full flex-row gap-x-4 gap-y-2 overflow-x-auto rounded-xl sm:max-w-[512px] sm:flex-wrap">
+      <div className="tall:flex-wrap flex max-h-[256px] w-full flex-row gap-x-4 gap-y-2 overflow-x-auto rounded-xl sm:max-h-fit sm:max-w-[512px] sm:flex-wrap">
         {EvidenceID.map((id) => (
           <EvidenceButton key={id} evidenceID={id}></EvidenceButton>
         ))}

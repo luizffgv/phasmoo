@@ -11,6 +11,9 @@ const config: Config = {
       colors: {
         transparent: "transparent",
       },
+      screens: {
+        tall: { raw: "(min-height: 800px)" },
+      },
     },
   },
   darkMode: "selector",
