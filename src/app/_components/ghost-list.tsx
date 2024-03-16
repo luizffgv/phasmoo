@@ -2,7 +2,7 @@
 
 import { EvidenceContext } from "@/contexts/evidence";
 import { GHOSTS, filter } from "@/lib/phasmo";
-import { useContext, useLayoutEffect, useMemo, useRef } from "react";
+import { useContext, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 import Ghost from "./ghost";
 import { EvidenceCountContext } from "@/contexts/evidence-count";
@@ -25,8 +25,9 @@ export default function GhostList() {
     }
 
     new Animation(
-      new KeyframeEffect(listRef.current, [{ opacity: 0 }, {}], {
+      new KeyframeEffect(listRef.current, [{ opacity: 0 }, { opacity: 1 }], {
         duration: 250,
+        fill: "forwards",
       }),
     ).play();
   }, [count, evidences]);
@@ -36,7 +37,7 @@ export default function GhostList() {
   return (
     <div
       ref={listRef}
-      className="flex-column flex flex-wrap justify-center gap-4 overflow-y-auto rounded-2xl "
+      className="flex-column flex flex-wrap justify-center gap-4 overflow-y-auto rounded-2xl opacity-0"
     >
       {ghosts.map((ghost) => (
         <Ghost key={ghost.name} ghost={ghost}></Ghost>
