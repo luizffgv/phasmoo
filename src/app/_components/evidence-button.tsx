@@ -3,7 +3,14 @@
 import { EvidenceContext } from "@/contexts/evidence";
 import { useContext } from "react";
 import Button from "./button";
-import { EvidenceID, EvidenceLabels, EvidenceState } from "@/lib/phasmo";
+import {
+  EvidenceID,
+  EvidenceLabels,
+  EvidenceState,
+  GHOSTS,
+  filter,
+} from "@/lib/phasmo";
+import { EvidenceCountContext } from "@/contexts/evidence-count";
 
 function stateToButtonProps(
   state: EvidenceState,
@@ -19,10 +26,30 @@ export type Props = {
 
 export default function EvidenceButton({ evidenceID }: Props) {
   const { evidences, setEvidence } = useContext(EvidenceContext);
+  const { count } = useContext(EvidenceCountContext);
+
+  let outline = "outline outline-3 outline-offset-[-3px] outline-transparent";
+  if (evidences.value[evidenceID] == EvidenceState.INDEFINITE) {
+    const ghostsIfPresent = GHOSTS.some(
+      filter(
+        { ...evidences.value, [evidenceID]: EvidenceState.PRESENT },
+        count,
+      ),
+    );
+    const ghostsIfAbsent = GHOSTS.some(
+      filter({ ...evidences.value, [evidenceID]: EvidenceState.ABSENT }, count),
+    );
+
+    if (ghostsIfPresent && !ghostsIfAbsent)
+      outline =
+        "outline outline-3 outline-offset-[-3px] outline-stone-700 dark:outline-stone-100";
+    else if (ghostsIfAbsent && !ghostsIfPresent)
+      outline = "outline outline-3 outline-offset-[-3px] outline-red-400";
+  }
 
   return (
     <Button
-      className="grow basis-0"
+      className={`grow basis-0 ${outline}`}
       onClick={() => {
         const state = evidences.value[evidenceID];
         const newState =
