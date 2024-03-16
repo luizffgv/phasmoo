@@ -64,7 +64,7 @@ export default function Button(props: Props) {
         <Link
           href={props.href}
           target={props.target}
-          className={`rounded-xl px-4 py-2 font-bold transition-all ${text} ${bg} ${hover} ${props.className ?? ""}`}
+          className={`rounded-xl px-4 py-2 text-center font-bold transition-all ${text} ${bg} ${hover} ${props.className ?? ""}`}
           aria-label={props["aria-label"]}
           aria-labelledby={props["aria-labelledby"]}
         >
