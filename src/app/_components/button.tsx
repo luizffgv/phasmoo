@@ -39,8 +39,7 @@ export default function Button(props: Props) {
         ? "bg-stone-200 dark:bg-stone-700"
         : "bg-emerald-400";
 
-  const text =
-    "weak" in props ? "text-stone-700 dark:text-white" : "text-white";
+  const text = "weak" in props ? "text-inherit" : "text-white";
 
   const shadow =
     "danger" in props
