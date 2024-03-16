@@ -4,6 +4,7 @@ import "./globals.css";
 import Settings from "./_components/settings";
 import ModalProvider from "./_components/providers/modal-provider";
 import SettingsProvider from "./_components/providers/settings-provider";
+import Logo from "./_components/logo";
 
 const quicksand = Quicksand({ subsets: ["latin"] });
 
@@ -32,7 +33,11 @@ export default function RootLayout({
       >
         <SettingsProvider>
           <ModalProvider>
-            <div className="w-fit-content flex flex-row-reverse">
+            <div className="w-fit-content flex flex-row justify-between">
+              <div className="flex flex-row items-center gap-4">
+                <Logo fill="text-stone-700 dark:text-stone-100"></Logo>
+                <h1 className="text-lg font-bold">Phasmoo</h1>
+              </div>
               <Settings></Settings>
             </div>
             {children}
