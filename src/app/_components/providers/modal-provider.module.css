@@ -1,0 +1,27 @@
+.modal {
+  @starting-style {
+    opacity: 0;
+  }
+
+  perspective: 100vmax;
+  transition: opacity 500ms;
+
+  .button {
+    @starting-style {
+      opacity: 0;
+      rotate: 30deg;
+    }
+
+    transition: all 400ms 250ms;
+  }
+
+  .card {
+    @starting-style {
+      rotate: y 45deg;
+      opacity: 0;
+    }
+
+    transform-origin: top;
+    transition: all 200ms 400ms;
+  }
+}

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
 import "./globals.css";
-import ThemeSwitcher from "./_components/theme-switcher";
+import Settings from "./_components/settings";
+import ModalProvider from "./_components/providers/modal-provider";
 
 const quicksand = Quicksand({ subsets: ["latin"] });
 
@@ -26,10 +27,14 @@ export default function RootLayout({
         <script src="/initial-theme-applier.js"></script>
       </head>
       <body
-        className={`${quicksand.className} flex h-dvh flex-col items-center gap-8 bg-stone-200 p-4 text-stone-700 transition-colors sm:h-auto dark:bg-stone-900 dark:text-stone-100`}
+        className={`${quicksand.className} flex h-dvh flex-col gap-8 bg-stone-200 p-4 text-stone-700 transition-colors sm:h-auto dark:bg-stone-900 dark:text-stone-100`}
       >
-        <ThemeSwitcher></ThemeSwitcher>
-        {children}
+        <ModalProvider>
+          <div className="w-fit-content flex flex-row-reverse">
+            <Settings></Settings>
+          </div>
+          {children}
+        </ModalProvider>
       </body>
     </html>
   );
