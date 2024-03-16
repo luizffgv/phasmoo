@@ -23,6 +23,8 @@ export type Props = {
     | {
         /** Handler for clicks on the button. */
         onClick: React.MouseEventHandler;
+        /** Whether the button is disabled. */
+        disabled?: boolean;
         role?: React.HTMLAttributes<HTMLButtonElement>["role"];
         "aria-checked"?: boolean;
       }
@@ -51,10 +53,10 @@ export default function Button(props: Props) {
 
   const hover =
     "danger" in props
-      ? "hover:brightness-125"
+      ? "enabled:hover:brightness-125"
       : "weak" in props
-        ? "hover:brightness-90 dark:hover:brightness-125"
-        : "hover:brightness-125 dark:hover:brightness-90";
+        ? "enabled:hover:brightness-90 dark:enabled:hover:brightness-125"
+        : "enabled:hover:brightness-125 dark:enabled:hover:brightness-90";
 
   return (
     <>
@@ -70,12 +72,13 @@ export default function Button(props: Props) {
         </Link>
       ) : (
         <button
-          className={`rounded-xl px-4 py-2 font-bold transition-all ${text} ${bg} ${hover} ${props.className ?? ""}`}
+          className={`rounded-xl px-4 py-2 font-bold transition-all disabled:opacity-50 ${text} ${bg} ${hover} ${props.className ?? ""}`}
           role={props["role"]}
           aria-label={props["aria-label"]}
           aria-checked={props["aria-checked"]}
           aria-labelledby={props["aria-labelledby"]}
           onClick={props.onClick}
+          disabled={props.disabled}
         >
           {props.children}
         </button>
