@@ -15,10 +15,7 @@ export default function Settings() {
         setModal(
           <div className="flex flex-col gap-4">
             <ThemeSwitcher></ThemeSwitcher>
-            <Button
-              href="https://github.com/luizffgv/spirit-box-web"
-              target="_blank"
-            >
+            <Button href="https://github.com/luizffgv/phasmoo" target="_blank">
               View source code
             </Button>
             <EvidenceIconsToggler></EvidenceIconsToggler>
