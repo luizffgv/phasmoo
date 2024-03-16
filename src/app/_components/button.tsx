@@ -37,16 +37,14 @@ export default function Button(props: Props) {
       ? "bg-red-400"
       : "weak" in props
         ? "bg-stone-200 dark:bg-stone-700"
-        : "bg-emerald-400";
+        : "bg-stone-700 dark:bg-stone-100";
 
-  const text = "weak" in props ? "text-inherit" : "text-white";
-
-  const shadow =
+  const text =
     "danger" in props
-      ? "shadow shadow-red-400/50"
+      ? "text-stone-700"
       : "weak" in props
-        ? ""
-        : "shadow shadow-emerald-400/50";
+        ? "text-inherit"
+        : "text-white dark:text-stone-700";
 
   return (
     <>
@@ -54,14 +52,14 @@ export default function Button(props: Props) {
         <Link
           href={props.href}
           target={props.target}
-          className={`rounded-xl px-4 py-2 font-bold  transition-all ${text} ${bg} ${shadow} ${props.className ?? ""}`}
+          className={`rounded-xl px-4 py-2 font-bold  transition-all ${text} ${bg} ${props.className ?? ""}`}
           aria-label={props["aria-label"]}
         >
           {props.children}
         </Link>
       ) : (
         <button
-          className={`rounded-xl px-4 py-2 font-bold transition-all ${text} ${bg} ${shadow} ${props.className ?? ""}`}
+          className={`rounded-xl px-4 py-2 font-bold transition-all ${text} ${bg} ${props.className ?? ""}`}
           aria-label={props["aria-label"]}
           onClick={props.onClick}
         >
