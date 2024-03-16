@@ -12,7 +12,7 @@ export default function EvidenceCountPicker() {
     <Card className="w-fit">
       <div className="flex flex-row flex-wrap items-baseline justify-center gap-x-8 gap-y-2">
         <strong>Available evidence</strong>
-        <div className="flex flex-row gap-2" role="radiogroup">
+        <div className="flex flex-row flex-wrap gap-2" role="radiogroup">
           {([1, 2, 3] as const).map((num) => (
             <RadioButton
               key={num}
