@@ -9,7 +9,7 @@ import Logo from "./_components/logo";
 const quicksand = Quicksand({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://phasmo.luizf.dev"),
+  metadataBase: new URL("https://phasmoo.luizf.dev"),
   title: "Phasmoo",
   description: "Identify Phasmophobia ghosts here.",
 };
