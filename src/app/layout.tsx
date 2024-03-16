@@ -6,6 +6,7 @@ import ThemeSwitcher from "./_components/theme-switcher";
 const quicksand = Quicksand({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://phasmo.luizf.dev"),
   title: "Spirit Box Web",
   description: "Identify Phasmophobia ghosts here.",
 };
