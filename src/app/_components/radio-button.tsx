@@ -2,6 +2,7 @@ import Button from "./button";
 
 export type Props = {
   checked?: boolean;
+  disabled?: boolean;
   onClick: React.MouseEventHandler;
   children: React.ReactNode;
 } & (
@@ -24,6 +25,7 @@ export default function RadioButton(props: Props) {
       aria-labelledby={
         "aria-labelledby" in props ? props["aria-labelledby"] : undefined
       }
+      disabled={props.disabled}
       {...(props.checked ? { primary: true } : { weak: true })}
     >
       {props.children}
