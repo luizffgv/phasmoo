@@ -7,7 +7,7 @@ const quicksand = Quicksand({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Spirit Box Web",
-  description: "A Phasmophobia ghost identification helper.",
+  description: "Identify Phasmophobia ghosts here.",
 };
 
 export default function RootLayout({
