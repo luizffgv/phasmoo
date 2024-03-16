@@ -21,9 +21,13 @@ export default function RadioButton(props: Props) {
     ? "text-white dark:text-stone-700"
     : "text-inherit";
 
+  const hover = props.checked
+    ? "hover:brightness-125 dark:hover:brightness-90"
+    : "hover:brightness-90 dark:hover:brightness-125";
+
   return (
     <button
-      className={`rounded-xl px-4 py-2 font-bold transition-colors ${bg} ${text}`}
+      className={`rounded-xl px-4 py-2 font-bold transition-all ${bg} ${text} ${hover}`}
       onClick={props.onClick}
       role="radio"
       aria-checked={props.checked}

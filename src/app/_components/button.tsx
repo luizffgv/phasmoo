@@ -46,20 +46,27 @@ export default function Button(props: Props) {
         ? "text-inherit"
         : "text-white dark:text-stone-700";
 
+  const hover =
+    "danger" in props
+      ? "hover:brightness-125"
+      : "weak" in props
+        ? "hover:brightness-90 dark:hover:brightness-125"
+        : "hover:brightness-125 dark:hover:brightness-90";
+
   return (
     <>
       {"href" in props ? (
         <Link
           href={props.href}
           target={props.target}
-          className={`rounded-xl px-4 py-2 font-bold  transition-all ${text} ${bg} ${props.className ?? ""}`}
+          className={`rounded-xl px-4 py-2 font-bold transition-all ${text} ${bg} ${hover} ${props.className ?? ""}`}
           aria-label={props["aria-label"]}
         >
           {props.children}
         </Link>
       ) : (
         <button
-          className={`rounded-xl px-4 py-2 font-bold transition-all ${text} ${bg} ${props.className ?? ""}`}
+          className={`rounded-xl px-4 py-2 font-bold transition-all ${text} ${bg} ${hover} ${props.className ?? ""}`}
           aria-label={props["aria-label"]}
           onClick={props.onClick}
         >
