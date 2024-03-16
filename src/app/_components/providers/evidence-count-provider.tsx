@@ -8,7 +8,7 @@ export default function EvidenceCountProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [count, setCount] = useState(3);
+  const [count, setCount] = useState<1 | 2 | 3>(3);
 
   return (
     <EvidenceCountContext.Provider
