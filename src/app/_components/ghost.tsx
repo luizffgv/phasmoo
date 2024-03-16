@@ -119,7 +119,7 @@ function getEvidenceIcon(
 
   return (
     <div
-      className={color}
+      className={`transition-colors ${color}`}
       title={EvidenceLabels[id]}
       aria-label={EvidenceLabels[id]}
     >
