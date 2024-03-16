@@ -98,13 +98,19 @@ const evidenceIcons = {
 
 export interface Props {
   evidence: EvidenceID;
+  /**
+   * Whether the icon will use `currentcolor` instead of having a color based on
+   * evidence state.
+   */
+  useCurrentColor?: boolean;
 }
 
-export default function EvidenceIcon({ evidence }: Props) {
+export default function EvidenceIcon({ evidence, useCurrentColor }: Props) {
   const { evidences } = useContext(EvidenceContext);
 
-  const color =
-    evidences.value[evidence] == EvidenceState.ABSENT
+  const color = useCurrentColor
+    ? "fill-current"
+    : evidences.value[evidence] == EvidenceState.ABSENT
       ? "fill-red-400"
       : evidences.value[evidence] == EvidenceState.PRESENT
         ? "fill-stone-700 dark:fill-stone-100"
