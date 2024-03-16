@@ -114,8 +114,8 @@ function getEvidenceIcon(
     evidences[id] == EvidenceState.ABSENT
       ? "fill-red-400"
       : evidences[id] == EvidenceState.PRESENT
-        ? "fill-emerald-400"
-        : "fill-current";
+        ? "fill-stone-700 dark:fill-stone-100"
+        : "fill-stone-200 dark:fill-stone-700";
 
   return (
     <div className={color} aria-label={EvidenceLabels[id]}>
