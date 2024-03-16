@@ -3,6 +3,7 @@ import Link from "next/link";
 export type Props = {
   children: React.ReactNode;
   "aria-label"?: string;
+  "aria-labelledby"?: string;
   className?: string;
 } & (
   | {
@@ -22,6 +23,8 @@ export type Props = {
     | {
         /** Handler for clicks on the button. */
         onClick: React.MouseEventHandler;
+        role?: React.HTMLAttributes<HTMLButtonElement>["role"];
+        "aria-checked"?: boolean;
       }
     | {
         /** Link the button will send you to. */
@@ -61,13 +64,17 @@ export default function Button(props: Props) {
           target={props.target}
           className={`rounded-xl px-4 py-2 font-bold transition-all ${text} ${bg} ${hover} ${props.className ?? ""}`}
           aria-label={props["aria-label"]}
+          aria-labelledby={props["aria-labelledby"]}
         >
           {props.children}
         </Link>
       ) : (
         <button
           className={`rounded-xl px-4 py-2 font-bold transition-all ${text} ${bg} ${hover} ${props.className ?? ""}`}
+          role={props["role"]}
           aria-label={props["aria-label"]}
+          aria-checked={props["aria-checked"]}
+          aria-labelledby={props["aria-labelledby"]}
           onClick={props.onClick}
         >
           {props.children}

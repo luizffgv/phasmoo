@@ -1,3 +1,5 @@
+import Button from "./button";
+
 export type Props = {
   checked?: boolean;
   onClick: React.MouseEventHandler;
@@ -13,21 +15,8 @@ export type Props = {
 
 /** A radio button. Must be in a container with the `radiogroup` role. */
 export default function RadioButton(props: Props) {
-  const bg = props.checked
-    ? "bg-stone-700 dark:bg-stone-100"
-    : "bg-stone-200 dark:bg-stone-700";
-
-  const text = props.checked
-    ? "text-white dark:text-stone-700"
-    : "text-inherit";
-
-  const hover = props.checked
-    ? "hover:brightness-125 dark:hover:brightness-90"
-    : "hover:brightness-90 dark:hover:brightness-125";
-
   return (
-    <button
-      className={`rounded-xl px-4 py-2 font-bold transition-all ${bg} ${text} ${hover}`}
+    <Button
       onClick={props.onClick}
       role="radio"
       aria-checked={props.checked}
@@ -35,8 +24,9 @@ export default function RadioButton(props: Props) {
       aria-labelledby={
         "aria-labelledby" in props ? props["aria-labelledby"] : undefined
       }
+      {...(props.checked ? { primary: true } : { weak: true })}
     >
       {props.children}
-    </button>
+    </Button>
   );
 }
