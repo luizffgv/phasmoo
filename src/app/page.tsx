@@ -9,7 +9,7 @@ export default function Home() {
     <EvidenceProvider>
       <EvidenceCountProvider>
         <main className="flex max-w-full grow flex-col items-center justify-between gap-8 overflow-y-auto sm:flex-col-reverse sm:justify-end">
-          <div className="max-w-screen-xl overflow-y-auto">
+          <div className="max-w-screen-xl overflow-y-auto rounded-2xl">
             <GhostList></GhostList>
           </div>
           <div className="flex max-w-full flex-col items-end gap-4 sm:items-center">
