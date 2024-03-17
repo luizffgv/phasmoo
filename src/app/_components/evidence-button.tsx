@@ -11,7 +11,6 @@ import {
   filter,
 } from "@/lib/phasmo";
 import { EvidenceCountContext } from "@/contexts/evidence-count";
-import { SettingsContext } from "@/contexts/settings-context";
 import EvidenceIcon from "./evidence-icon";
 
 function stateToButtonProps(
@@ -29,7 +28,6 @@ export type Props = {
 export default function EvidenceButton({ evidenceID }: Props) {
   const { evidences, setEvidence } = useContext(EvidenceContext);
   const { count } = useContext(EvidenceCountContext);
-  const { buttonIconMode } = useContext(SettingsContext);
 
   let outline = "outline outline-3 outline-offset-[-3px] outline-transparent";
   if (evidences.value[evidenceID] == EvidenceState.INDEFINITE) {
@@ -65,11 +63,7 @@ export default function EvidenceButton({ evidenceID }: Props) {
       }}
       {...stateToButtonProps(evidences.value[evidenceID])}
     >
-      {buttonIconMode ? (
-        <EvidenceIcon evidence={evidenceID} useCurrentColor></EvidenceIcon>
-      ) : (
-        EvidenceLabels[evidenceID]
-      )}
+      <EvidenceIcon evidence={evidenceID} useCurrentColor></EvidenceIcon>
     </Button>
   );
 }

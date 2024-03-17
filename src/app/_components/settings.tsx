@@ -4,7 +4,6 @@ import { useContext } from "react";
 import Button from "./button";
 import { ModalContext } from "@/contexts/modal";
 import ThemeSwitcher from "./theme-switcher";
-import EvidenceIconsToggler from "./evidence-icons-toggler";
 
 export default function Settings() {
   const { setModal } = useContext(ModalContext);
@@ -18,7 +17,6 @@ export default function Settings() {
             <Button href="https://github.com/luizffgv/phasmoo" target="_blank">
               View source code
             </Button>
-            <EvidenceIconsToggler></EvidenceIconsToggler>
           </div>,
         )
       }

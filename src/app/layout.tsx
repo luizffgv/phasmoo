@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
 import "./globals.css";
 import ModalProvider from "./_components/providers/modal-provider";
-import SettingsProvider from "./_components/providers/settings-provider";
 import Header from "./_components/header";
 
 const quicksand = Quicksand({ subsets: ["latin"] });
@@ -30,12 +29,10 @@ export default function RootLayout({
       <body
         className={`${quicksand.className} flex h-dvh flex-col gap-8 bg-stone-200 p-4 text-stone-700 transition-colors sm:h-auto dark:bg-stone-900 dark:text-stone-100`}
       >
-        <SettingsProvider>
-          <ModalProvider>
-            <Header></Header>
-            {children}
-          </ModalProvider>
-        </SettingsProvider>
+        <ModalProvider>
+          <Header></Header>
+          {children}
+        </ModalProvider>
       </body>
     </html>
   );

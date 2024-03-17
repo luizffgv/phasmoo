@@ -12,7 +12,7 @@ const config: Config = {
         transparent: "transparent",
       },
       screens: {
-        tall: { raw: "(min-height: 800px)" },
+        smv: { raw: "(min-height: 640px)" },
       },
     },
   },
