@@ -24,6 +24,11 @@ export default function RootLayout({
     >
       <head>
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script
+          src={`/service-worker-register.js`}
+          data-build-id={process.env.buildID}
+        ></script>
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script src="/initial-theme-applier.js"></script>
       </head>
       <body
