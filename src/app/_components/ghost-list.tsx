@@ -45,7 +45,7 @@ export default function GhostList() {
         <Ghost key={ghost.name} ghost={ghost}></Ghost>
       ))}
       {filteredGhosts.length === 0 ? (
-        <strong className="text-xl">Skill issue</strong>
+        <strong className="text-xl">No matching ghosts</strong>
       ) : (
         <></>
       )}
