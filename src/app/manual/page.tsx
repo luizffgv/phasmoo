@@ -112,9 +112,9 @@ export default function Page() {
                 <strong>guaranteed</strong> evidences.
               </p>
               <p>
-                A guaranteed evidence is of the ghost&apos;s 3 main evidences,
-                is always present for that ghost as long as there&apos;s at
-                least one evidence available.
+                A guaranteed evidence is one of the ghost&apos;s 3 main
+                evidences, it&apos;s always present for that ghost as long as
+                there&apos;s at least one evidence available.
               </p>
               <p>
                 Fake evidences are guaranteed even when playing with zero
