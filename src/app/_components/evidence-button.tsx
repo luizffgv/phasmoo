@@ -12,6 +12,7 @@ import {
 import { EvidenceCountContext } from "@/contexts/evidence-count";
 import EvidenceIcon from "./evidence-icon";
 import { GhostsContext } from "@/contexts/ghosts";
+import { StatusContext } from "@/contexts/status-context";
 
 function stateToButtonProps(
   state: EvidenceState,
@@ -29,6 +30,7 @@ export default function EvidenceButton({ evidenceID }: Props) {
   const { evidences, setEvidence } = useContext(EvidenceContext);
   const { ghosts } = useContext(GhostsContext);
   const { count } = useContext(EvidenceCountContext);
+  const { setStatus } = useContext(StatusContext);
 
   let outline = "outline outline-3 outline-offset-[-3px] outline-transparent";
   if (evidences.value[evidenceID] == EvidenceState.INDEFINITE) {
@@ -50,21 +52,33 @@ export default function EvidenceButton({ evidenceID }: Props) {
   }
 
   return (
-    <Button
-      className={`grow basis-0 ${outline}`}
-      onClick={() => {
-        const state = evidences.value[evidenceID];
-        const newState =
-          state == EvidenceState.ABSENT
-            ? EvidenceState.INDEFINITE
-            : state == EvidenceState.INDEFINITE
-              ? EvidenceState.PRESENT
-              : EvidenceState.ABSENT;
-        setEvidence(evidenceID, newState);
-      }}
-      {...stateToButtonProps(evidences.value[evidenceID])}
-    >
-      <EvidenceIcon evidence={evidenceID} useCurrentColor></EvidenceIcon>
-    </Button>
+    <div className="grow basis-0 *:w-full">
+      <Button
+        className={`${outline}`}
+        onClick={() => {
+          const state = evidences.value[evidenceID];
+          const newState =
+            state == EvidenceState.ABSENT
+              ? EvidenceState.INDEFINITE
+              : state == EvidenceState.INDEFINITE
+                ? EvidenceState.PRESENT
+                : EvidenceState.ABSENT;
+          setEvidence(evidenceID, newState);
+
+          const stateLabels = {
+            [EvidenceState.ABSENT]: "absent",
+            [EvidenceState.INDEFINITE]: "indefinite",
+            [EvidenceState.PRESENT]: "present",
+          };
+          setStatus(
+            `${EvidenceLabels[evidenceID]} was set to ${stateLabels[newState]}`,
+            3000,
+          );
+        }}
+        {...stateToButtonProps(evidences.value[evidenceID])}
+      >
+        <EvidenceIcon evidence={evidenceID} useCurrentColor></EvidenceIcon>
+      </Button>
+    </div>
   );
 }

@@ -4,9 +4,11 @@ import { EvidenceCountContext } from "@/contexts/evidence-count";
 import { useContext } from "react";
 import Card from "./card";
 import RadioButton from "./radio-button";
+import { StatusContext } from "@/contexts/status-context";
 
 export default function EvidenceCountPicker() {
   const { count, setCount } = useContext(EvidenceCountContext);
+  const { setStatus } = useContext(StatusContext);
 
   return (
     // We use opacity-0 because in smaller screens the picker's position is
@@ -20,7 +22,12 @@ export default function EvidenceCountPicker() {
             {([1, 2, 3] as const).map((num) => (
               <RadioButton
                 key={num}
-                onClick={() => setCount(num)}
+                onClick={() => {
+                  if (count == num) return;
+
+                  setCount(num);
+                  setStatus(`Evidence count was set to ${num}`, 3000);
+                }}
                 checked={num == count}
                 aria-label={`${num} evidence`}
                 aria-labelledby="y"
