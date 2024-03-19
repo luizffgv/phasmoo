@@ -1,15 +1,17 @@
 "use client";
 
 import { EvidenceContext } from "@/contexts/evidence";
-import { GHOSTS, filter } from "@/lib/phasmo";
+import { filter } from "@/lib/phasmo";
 import { useContext, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 import Ghost from "./ghost";
 import { EvidenceCountContext } from "@/contexts/evidence-count";
+import { GhostsContext } from "@/contexts/ghosts";
 
 export default function GhostList() {
   const { evidences } = useContext(EvidenceContext);
   const { count } = useContext(EvidenceCountContext);
+  const { ghosts } = useContext(GhostsContext);
 
   const listRef = useRef<HTMLDivElement>(null);
 
@@ -32,17 +34,17 @@ export default function GhostList() {
     ).play();
   }, [count, evidences]);
 
-  const ghosts = GHOSTS.filter(ghostFilter);
+  const filteredGhosts = ghosts.filter(ghostFilter);
 
   return (
     <div
       ref={listRef}
       className="flex-column flex flex-wrap justify-center gap-4 rounded-2xl opacity-0"
     >
-      {ghosts.map((ghost) => (
+      {filteredGhosts.map((ghost) => (
         <Ghost key={ghost.name} ghost={ghost}></Ghost>
       ))}
-      {ghosts.length === 0 ? (
+      {filteredGhosts.length === 0 ? (
         <strong className="text-xl">Skill issue</strong>
       ) : (
         <></>

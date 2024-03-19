@@ -7,11 +7,11 @@ import {
   EvidenceID,
   EvidenceLabels,
   EvidenceState,
-  GHOSTS,
   filter,
 } from "@/lib/phasmo";
 import { EvidenceCountContext } from "@/contexts/evidence-count";
 import EvidenceIcon from "./evidence-icon";
+import { GhostsContext } from "@/contexts/ghosts";
 
 function stateToButtonProps(
   state: EvidenceState,
@@ -27,17 +27,18 @@ export type Props = {
 
 export default function EvidenceButton({ evidenceID }: Props) {
   const { evidences, setEvidence } = useContext(EvidenceContext);
+  const { ghosts } = useContext(GhostsContext);
   const { count } = useContext(EvidenceCountContext);
 
   let outline = "outline outline-3 outline-offset-[-3px] outline-transparent";
   if (evidences.value[evidenceID] == EvidenceState.INDEFINITE) {
-    const ghostsIfPresent = GHOSTS.some(
+    const ghostsIfPresent = ghosts.some(
       filter(
         { ...evidences.value, [evidenceID]: EvidenceState.PRESENT },
         count,
       ),
     );
-    const ghostsIfAbsent = GHOSTS.some(
+    const ghostsIfAbsent = ghosts.some(
       filter({ ...evidences.value, [evidenceID]: EvidenceState.ABSENT }, count),
     );
 

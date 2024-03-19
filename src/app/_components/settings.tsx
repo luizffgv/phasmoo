@@ -4,22 +4,33 @@ import { useContext } from "react";
 import Button from "./button";
 import { ModalContext } from "@/contexts/modal";
 import ThemeSwitcher from "./theme-switcher";
+import { usePathname } from "next/navigation";
+
+export function SettingsModal() {
+  const pathname = usePathname();
+
+  return (
+    <div className="flex flex-col gap-4">
+      <ThemeSwitcher></ThemeSwitcher>
+      {pathname != "/" ? <Button href="/">Go to main page</Button> : <></>}
+      {pathname != "/manual" ? (
+        <Button href="/manual">View manual</Button>
+      ) : (
+        <></>
+      )}
+      <Button href="https://github.com/luizffgv/phasmoo" target="_blank">
+        View source code
+      </Button>
+    </div>
+  );
+}
 
 export default function Settings() {
   const { setModal } = useContext(ModalContext);
 
   return (
     <Button
-      onClick={() =>
-        setModal(
-          <div className="flex flex-col gap-4">
-            <ThemeSwitcher></ThemeSwitcher>
-            <Button href="https://github.com/luizffgv/phasmoo" target="_blank">
-              View source code
-            </Button>
-          </div>,
-        )
-      }
+      onClick={() => setModal(<SettingsModal></SettingsModal>)}
       aria-label="Open menu"
     >
       <svg
