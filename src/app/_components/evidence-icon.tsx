@@ -1,3 +1,5 @@
+"use client";
+
 import { EvidenceContext } from "@/contexts/evidence";
 import { EvidenceID, EvidenceLabels, EvidenceState } from "@/lib/phasmo";
 import { useContext } from "react";
