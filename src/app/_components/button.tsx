@@ -53,10 +53,10 @@ export default function Button(props: Props) {
 
   const hover =
     "danger" in props
-      ? "enabled:hover:brightness-125"
+      ? "hover:brightness-125 disabled:hover:brightness-100"
       : "weak" in props
-        ? "enabled:hover:brightness-90 dark:enabled:hover:brightness-125"
-        : "enabled:hover:brightness-125 dark:enabled:hover:brightness-90";
+        ? "hover:brightness-90 dark:hover:brightness-125 disabled:hover:brightness-100 dark:disabled:hover:brightness-100"
+        : "hover:brightness-125 dark:hover:brightness-90 disabled:hover:brightness-100 dark:disabled:hover:brightness-100";
 
   return (
     <>
