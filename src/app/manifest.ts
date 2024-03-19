@@ -10,6 +10,11 @@ export default function manifest(): MetadataRoute.Manifest {
     display: "standalone",
     icons: [
       {
+        src: "/icon_maskable.png",
+        sizes: "393x393",
+        purpose: "maskable",
+      },
+      {
         src: "/icon.png",
         sizes: "256x256",
       },
