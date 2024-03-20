@@ -1,7 +1,7 @@
 "use client";
 
 import { EvidenceContext } from "@/contexts/evidence";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import Button from "./button";
 import {
   EvidenceID,
@@ -31,6 +31,7 @@ export default function EvidenceButton({ evidenceID }: Props) {
   const { ghosts } = useContext(GhostsContext);
   const { count } = useContext(EvidenceCountContext);
   const { setStatus } = useContext(StatusContext);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   let outline = "outline outline-3 outline-offset-[-3px] outline-transparent";
   if (evidences.value[evidenceID] == EvidenceState.INDEFINITE) {
@@ -52,10 +53,16 @@ export default function EvidenceButton({ evidenceID }: Props) {
   }
 
   return (
-    <div className="grow basis-0 *:w-full">
+    <div className="grow basis-0 *:w-full" ref={containerRef}>
       <Button
         className={`${outline}`}
         onClick={() => {
+          new Animation(
+            new KeyframeEffect(containerRef.current, [{ scale: 0.9 }, {}], {
+              duration: 150,
+            }),
+          ).play();
+
           const state = evidences.value[evidenceID];
           const newState =
             state == EvidenceState.ABSENT
