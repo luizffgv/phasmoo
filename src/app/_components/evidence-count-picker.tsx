@@ -11,9 +11,6 @@ export default function EvidenceCountPicker() {
   const { setStatus } = useContext(StatusContext);
 
   return (
-    // We use opacity-0 because in smaller screens the picker's position is
-    // affected by the settings, so we wait until settings are applied before
-    // showing it.
     <div>
       <Card className="w-fit">
         <div className="flex flex-row flex-wrap items-baseline justify-center gap-x-8 gap-y-2">
@@ -30,7 +27,6 @@ export default function EvidenceCountPicker() {
                 }}
                 checked={num == count}
                 aria-label={`${num} evidence`}
-                aria-labelledby="y"
               >
                 {num}
               </RadioButton>
