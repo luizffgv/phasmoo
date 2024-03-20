@@ -11,7 +11,7 @@ export default function Home() {
       <ManualEnsurer></ManualEnsurer>
       <EvidenceProvider>
         <EvidenceCountProvider>
-          <main className="flex max-w-full grow flex-col items-center justify-between gap-8 overflow-y-auto sm:flex-col-reverse sm:justify-end">
+          <main className="flex max-h-full max-w-full flex-col items-center justify-between gap-8 p-4 sm:flex-col-reverse sm:justify-end">
             <div className="max-w-screen-xl overflow-y-auto rounded-2xl">
               <GhostList></GhostList>
             </div>

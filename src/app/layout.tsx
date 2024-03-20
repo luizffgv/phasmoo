@@ -33,12 +33,14 @@ export default function RootLayout({
         <script src="/initial-theme-applier.js"></script>
       </head>
       <body
-        className={`${quicksand.className} flex h-dvh flex-col gap-8 bg-stone-200 p-4 text-stone-700 transition-colors sm:h-auto dark:bg-stone-900 dark:text-stone-100`}
+        className={`${quicksand.className} flex h-dvh flex-col bg-stone-200 text-stone-700 transition-colors sm:h-auto dark:bg-stone-900 dark:text-stone-100`}
       >
         <ModalProvider>
           <StatusProvider>
-            <Header></Header>
-            {children}
+            <div className="sticky top-0 z-[1]">
+              <Header></Header>
+            </div>
+            <div className="grow overflow-y-auto">{children}</div>
           </StatusProvider>
         </ModalProvider>
       </body>

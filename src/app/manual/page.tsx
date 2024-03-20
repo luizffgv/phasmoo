@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className="pb-[25vh]">
+    <div className="p-4 pb-[25vh]">
       <ManualReadSetter></ManualReadSetter>
       <div className="flex flex-row justify-center">
         <div className="flex max-w-prose flex-col">
