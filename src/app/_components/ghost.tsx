@@ -11,7 +11,7 @@ export default function Ghost({ ghost }: Props) {
   return (
     <Card className={`max-w-[384px] grow ${styles.card}`}>
       <div className="flex flex-col items-center gap-4">
-        <div className="text-center text-xl font-bold">{ghost.name}</div>
+        <div className="text-center text-lg font-bold">{ghost.name}</div>
         <div className="flex flex-row gap-4">
           {ghost.evidences
             .filter((evidence) => evidence != ghost.guaranteed)
