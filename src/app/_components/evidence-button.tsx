@@ -1,7 +1,7 @@
 "use client";
 
 import { EvidenceContext } from "@/contexts/evidence";
-import { useContext, useRef } from "react";
+import { useContext, useMemo, useRef } from "react";
 import Button from "./button";
 import {
   EvidenceID,
@@ -33,24 +33,30 @@ export default function EvidenceButton({ evidenceID }: Props) {
   const { setStatus } = useContext(StatusContext);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  let outline = "outline outline-3 outline-offset-[-3px] outline-transparent";
-  if (evidences.value[evidenceID] == EvidenceState.INDEFINITE) {
-    const ghostsIfPresent = ghosts.some(
-      filter(
-        { ...evidences.value, [evidenceID]: EvidenceState.PRESENT },
-        count,
-      ),
-    );
-    const ghostsIfAbsent = ghosts.some(
-      filter({ ...evidences.value, [evidenceID]: EvidenceState.ABSENT }, count),
-    );
+  const outline = useMemo(() => {
+    let outline = "outline outline-3 outline-offset-[-3px] outline-transparent";
+    if (evidences.value[evidenceID] == EvidenceState.INDEFINITE) {
+      const ghostsIfPresent = ghosts.some(
+        filter(
+          { ...evidences.value, [evidenceID]: EvidenceState.PRESENT },
+          count,
+        ),
+      );
+      const ghostsIfAbsent = ghosts.some(
+        filter(
+          { ...evidences.value, [evidenceID]: EvidenceState.ABSENT },
+          count,
+        ),
+      );
 
-    if (ghostsIfPresent && !ghostsIfAbsent)
-      outline =
+      if (ghostsIfPresent && !ghostsIfAbsent)
         "outline outline-3 outline-offset-[-3px] outline-stone-700 dark:outline-stone-100";
-    else if (ghostsIfAbsent && !ghostsIfPresent)
-      outline = "outline outline-3 outline-offset-[-3px] outline-red-400";
-  }
+      else if (ghostsIfAbsent && !ghostsIfPresent)
+        outline = "outline outline-3 outline-offset-[-3px] outline-red-400";
+
+      return outline;
+    }
+  }, [count, ghosts, evidenceID, evidences]);
 
   return (
     <div className="grow basis-0 *:w-full" ref={containerRef}>
