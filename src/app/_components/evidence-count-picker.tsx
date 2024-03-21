@@ -11,29 +11,27 @@ export default function EvidenceCountPicker() {
   const { setStatus } = useContext(StatusContext);
 
   return (
-    <div>
-      <Card className="w-fit">
-        <div className="flex flex-row flex-wrap items-baseline justify-center gap-x-8 gap-y-2">
-          <strong>Available evidence</strong>
-          <div className="flex flex-row flex-wrap gap-2" role="radiogroup">
-            {([1, 2, 3] as const).map((num) => (
-              <RadioButton
-                key={num}
-                onClick={() => {
-                  if (count == num) return;
+    <Card className="flex items-center justify-center">
+      <div className="flex flex-row flex-wrap items-baseline justify-center gap-x-8 gap-y-2">
+        <strong>Available evidence</strong>
+        <div className="flex flex-row flex-wrap gap-2" role="radiogroup">
+          {([1, 2, 3] as const).map((num) => (
+            <RadioButton
+              key={num}
+              onClick={() => {
+                if (count == num) return;
 
-                  setCount(num);
-                  setStatus(`Evidence count was set to ${num}`, 3000);
-                }}
-                checked={num == count}
-                aria-label={`${num} evidence`}
-              >
-                {num}
-              </RadioButton>
-            ))}
-          </div>
+                setCount(num);
+                setStatus(`Evidence count was set to ${num}`, 3000);
+              }}
+              checked={num == count}
+              aria-label={`${num} evidence`}
+            >
+              {num}
+            </RadioButton>
+          ))}
         </div>
-      </Card>
-    </div>
+      </div>
+    </Card>
   );
 }

@@ -1,4 +1,4 @@
-import { EvidenceID, EvidenceLabels } from "@/lib/phasmo";
+import { EvidenceID, EvidenceLabels, SpeedBits } from "@/lib/phasmo";
 import EvidenceIcon from "../_components/evidence-icon";
 import EvidenceButton from "../_components/evidence-button";
 import Section from "./_components/section";
@@ -91,7 +91,11 @@ export default function Page() {
             </p>
             <GhostsProvider
               ghosts={[
-                { name: "Example ghost", evidences: ["emf", "box", "dots"] },
+                {
+                  name: "Example ghost",
+                  evidences: ["emf", "box", "dots"],
+                  speeds: SpeedBits.NORMAL,
+                },
               ]}
             >
               <EvidenceProvider>
@@ -137,8 +141,16 @@ export default function Page() {
             <p>Check the example below.</p>
             <GhostsProvider
               ghosts={[
-                { name: "Ghost A", evidences: ["emf", "box", "dots"] },
-                { name: "Ghost B", evidences: ["emf", "box", "orb"] },
+                {
+                  name: "Ghost A",
+                  evidences: ["emf", "box", "dots"],
+                  speeds: SpeedBits.NORMAL,
+                },
+                {
+                  name: "Ghost B",
+                  evidences: ["emf", "box", "orb"],
+                  speeds: SpeedBits.NORMAL,
+                },
               ]}
             >
               <EvidenceProvider>

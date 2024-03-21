@@ -12,6 +12,13 @@ export const EvidenceID = [
 /** One of the evidence IDs. */
 export type EvidenceID = (typeof EvidenceID)[number];
 
+/** A speed a ghost moves in. */
+export enum SpeedBits {
+  SLOW = 0b1,
+  NORMAL = 0b10,
+  FAST = 0b100,
+}
+
 /** A Phasmophobia ghost. */
 export interface Ghost {
   /** Name of the ghost */
@@ -25,6 +32,11 @@ export interface Ghost {
    * count, nor is it counted for difficulty purposes.
    */
   fake?: EvidenceID;
+  /**
+   * Normal walking speeds the ghost has, without seeing the player. This is a
+   * bit field using {@link SpeedBits}.
+   */
+  speeds: number;
 }
 
 /** States an evidence can be in. */
@@ -45,38 +57,132 @@ const MAX_EVIDENCES = 3;
 
 /** All ghosts in the game and their evidences. */
 export const GHOSTS = [
-  { name: "Banshee", evidences: ["uv", "orb", "dots"] },
-  { name: "Demon", evidences: ["uv", "writing", "freezing"] },
-  { name: "Deogen", evidences: ["box", "writing", "dots"], guaranteed: "box" },
-  { name: "Goryo", evidences: ["emf", "uv", "dots"], guaranteed: "dots" },
+  {
+    name: "Banshee",
+    evidences: ["uv", "orb", "dots"],
+    speeds: SpeedBits.NORMAL,
+  },
+  {
+    name: "Demon",
+    evidences: ["uv", "writing", "freezing"],
+    speeds: SpeedBits.NORMAL,
+  },
+  {
+    name: "Deogen",
+    evidences: ["box", "writing", "dots"],
+    guaranteed: "box",
+    speeds: SpeedBits.SLOW | SpeedBits.FAST,
+  },
+  {
+    name: "Goryo",
+    evidences: ["emf", "uv", "dots"],
+    guaranteed: "dots",
+    speeds: SpeedBits.NORMAL,
+  },
   {
     name: "Hantu",
     evidences: ["uv", "orb", "freezing"],
     guaranteed: "freezing",
+    speeds: SpeedBits.SLOW | SpeedBits.NORMAL | SpeedBits.FAST,
   },
-  { name: "Jinn", evidences: ["emf", "uv", "freezing"] },
-  { name: "Mare", evidences: ["box", "orb", "writing"] },
+  {
+    name: "Jinn",
+    evidences: ["emf", "uv", "freezing"],
+    speeds: SpeedBits.NORMAL | SpeedBits.FAST,
+  },
+  {
+    name: "Mare",
+    evidences: ["box", "orb", "writing"],
+    speeds: SpeedBits.NORMAL,
+  },
   {
     name: "Moroi",
     evidences: ["box", "writing", "freezing"],
     guaranteed: "box",
+    speeds: SpeedBits.SLOW | SpeedBits.NORMAL | SpeedBits.FAST,
   },
-  { name: "Myling", evidences: ["emf", "uv", "writing"] },
-  { name: "Obake", evidences: ["emf", "uv", "orb"], guaranteed: "uv" },
-  { name: "Oni", evidences: ["emf", "freezing", "dots"] },
-  { name: "Onryo", evidences: ["box", "orb", "freezing"] },
-  { name: "Phantom", evidences: ["box", "uv", "dots"] },
-  { name: "Poltergeist", evidences: ["box", "uv", "writing"] },
-  { name: "Raiju", evidences: ["emf", "orb", "dots"] },
-  { name: "Revenant", evidences: ["orb", "writing", "freezing"] },
-  { name: "Shade", evidences: ["emf", "writing", "freezing"] },
-  { name: "Spirit", evidences: ["emf", "box", "writing"] },
-  { name: "Thaye", evidences: ["orb", "writing", "dots"] },
-  { name: "The Mimic", evidences: ["box", "uv", "freezing"], fake: "orb" },
-  { name: "The Twins", evidences: ["emf", "box", "freezing"] },
-  { name: "Wraith", evidences: ["emf", "box", "dots"] },
-  { name: "Yokai", evidences: ["box", "orb", "dots"] },
-  { name: "Yurei", evidences: ["orb", "freezing", "dots"] },
+  {
+    name: "Myling",
+    evidences: ["emf", "uv", "writing"],
+    speeds: SpeedBits.NORMAL,
+  },
+  {
+    name: "Obake",
+    evidences: ["emf", "uv", "orb"],
+    guaranteed: "uv",
+    speeds: SpeedBits.NORMAL,
+  },
+  {
+    name: "Oni",
+    evidences: ["emf", "freezing", "dots"],
+    speeds: SpeedBits.NORMAL,
+  },
+  {
+    name: "Onryo",
+    evidences: ["box", "orb", "freezing"],
+    speeds: SpeedBits.NORMAL,
+  },
+  {
+    name: "Phantom",
+    evidences: ["box", "uv", "dots"],
+    speeds: SpeedBits.NORMAL,
+  },
+  {
+    name: "Poltergeist",
+    evidences: ["box", "uv", "writing"],
+    speeds: SpeedBits.NORMAL,
+  },
+  {
+    name: "Raiju",
+    evidences: ["emf", "orb", "dots"],
+    speeds: SpeedBits.NORMAL | SpeedBits.FAST,
+  },
+  {
+    name: "Revenant",
+    evidences: ["orb", "writing", "freezing"],
+    speeds: SpeedBits.SLOW,
+  },
+  {
+    name: "Shade",
+    evidences: ["emf", "writing", "freezing"],
+    speeds: SpeedBits.NORMAL,
+  },
+  {
+    name: "Spirit",
+    evidences: ["emf", "box", "writing"],
+    speeds: SpeedBits.NORMAL,
+  },
+  {
+    name: "Thaye",
+    evidences: ["orb", "writing", "dots"],
+    speeds: SpeedBits.SLOW | SpeedBits.NORMAL | SpeedBits.FAST,
+  },
+  {
+    name: "The Mimic",
+    evidences: ["box", "uv", "freezing"],
+    fake: "orb",
+    speeds: SpeedBits.NORMAL,
+  },
+  {
+    name: "The Twins",
+    evidences: ["emf", "box", "freezing"],
+    speeds: SpeedBits.SLOW | SpeedBits.FAST,
+  },
+  {
+    name: "Wraith",
+    evidences: ["emf", "box", "dots"],
+    speeds: SpeedBits.NORMAL,
+  },
+  {
+    name: "Yokai",
+    evidences: ["box", "orb", "dots"],
+    speeds: SpeedBits.NORMAL,
+  },
+  {
+    name: "Yurei",
+    evidences: ["orb", "freezing", "dots"],
+    speeds: SpeedBits.NORMAL,
+  },
 ] as const satisfies Ghost[];
 
 /** Labels for each {@link EvidenceID}. */
@@ -104,7 +210,7 @@ export type EvidenceStateMap = { [id in EvidenceID]: EvidenceState };
  * @param availableEvidences - Number of evidences the difficulty allows.
  * @returns `true` if the ghost is possible, `false` if discarded.
  */
-export function filter(
+export function evidenceFilter(
   evidences: EvidenceStateMap,
   availableEvidences: 1 | 2 | 3,
 ): (ghost: Ghost) => boolean {
@@ -155,4 +261,14 @@ export function filter(
 
     return true;
   };
+}
+
+/**
+ * Returns a filter callback for checking if the provided speeds discard a
+ * ghost.
+ *
+ * @param speeds - Speeds presented, use {@link SpeedBits}.
+ */
+export function speedFilter(speeds: number): (ghost: Ghost) => boolean {
+  return (ghost) => (ghost.speeds & speeds) == speeds;
 }

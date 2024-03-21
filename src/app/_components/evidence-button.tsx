@@ -7,12 +7,13 @@ import {
   EvidenceID,
   EvidenceLabels,
   EvidenceState,
-  filter,
+  evidenceFilter,
 } from "@/lib/phasmo";
 import { EvidenceCountContext } from "@/contexts/evidence-count";
 import EvidenceIcon from "./evidence-icon";
 import { GhostsContext } from "@/contexts/ghosts";
 import { StatusContext } from "@/contexts/status-context";
+import { GhostSpeedsContext } from "@/contexts/ghost-speeds";
 
 function stateToButtonProps(
   state: EvidenceState,
@@ -31,19 +32,22 @@ export default function EvidenceButton({ evidenceID }: Props) {
   const { ghosts } = useContext(GhostsContext);
   const { count } = useContext(EvidenceCountContext);
   const { setStatus } = useContext(StatusContext);
+  const { speedFilter } = useContext(GhostSpeedsContext);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const outline = useMemo(() => {
     let outline = "outline outline-3 outline-offset-[-3px] outline-transparent";
     if (evidences.value[evidenceID] == EvidenceState.INDEFINITE) {
-      const ghostsIfPresent = ghosts.some(
-        filter(
+      const speedFilteredGhosts = ghosts.filter(speedFilter);
+
+      const ghostsIfPresent = speedFilteredGhosts.some(
+        evidenceFilter(
           { ...evidences.value, [evidenceID]: EvidenceState.PRESENT },
           count,
         ),
       );
-      const ghostsIfAbsent = ghosts.some(
-        filter(
+      const ghostsIfAbsent = speedFilteredGhosts.some(
+        evidenceFilter(
           { ...evidences.value, [evidenceID]: EvidenceState.ABSENT },
           count,
         ),
@@ -56,7 +60,7 @@ export default function EvidenceButton({ evidenceID }: Props) {
 
       return outline;
     }
-  }, [count, ghosts, evidenceID, evidences]);
+  }, [count, ghosts, evidenceID, evidences, speedFilter]);
 
   return (
     <div className="grow basis-0 *:w-full" ref={containerRef}>
