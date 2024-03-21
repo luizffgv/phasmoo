@@ -13,6 +13,8 @@ import EvidenceCountProvider from "../_components/providers/evidence-count-provi
 import EvidenceCountPicker from "../_components/evidence-count-picker";
 import Button from "../_components/button";
 import { Metadata } from "next";
+import GhostSpeedsProvider from "../_components/providers/ghost-speeds-provider";
+import GhostSpeedsPicker from "../_components/ghost-speeds-picker";
 
 export const metadata: Metadata = {
   title: "Phasmoo Manual",
@@ -173,6 +175,24 @@ export default function Page() {
               The ghost list still respects only the evidence information you
               explicitly provide.
             </p>
+          </Section>
+          <Section title="Ghost speeds" level={2}>
+            <p>
+              Phasmoo lets you provide the ghost walking speed when you&apos;re
+              out of sight during hunts. The default speed is 1.7m/s, anything
+              above that is considered <strong>fast</strong> and anything below
+              is <strong>slow</strong>.
+            </p>
+            <p>
+              A ghost can have multiple speeds at different times, so you have
+              to provide all speeds that the ghost has.
+            </p>
+            <p>Try setting the ghost speeds below.</p>
+            <GhostSpeedsProvider>
+              <div className="[container-type:inline-size]">
+                <GhostSpeedsPicker></GhostSpeedsPicker>
+              </div>
+            </GhostSpeedsProvider>
           </Section>
           <Section title="You're ready to use Phasmoo!" level={2}>
             <div className="w-fit">
