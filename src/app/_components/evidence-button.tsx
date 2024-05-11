@@ -14,6 +14,20 @@ import EvidenceIcon from "./evidence-icon";
 import { GhostsContext } from "@/contexts/ghosts";
 import { StatusContext } from "@/contexts/status-context";
 import { GhostSpeedsContext } from "@/contexts/ghost-speeds";
+import { VariantProps, cva } from "class-variance-authority";
+
+const outlineCVA = cva(["outline", "outline-3", "outline-offset-[-3px]"], {
+  variants: {
+    presenceHint: {
+      none: ["outline-transparent"],
+      mustBePresent: ["outline-stone-700", "dark:outline-stone-100"],
+      mustBeAbsent: ["outline-red-400"],
+    },
+  },
+  defaultVariants: {
+    presenceHint: "none",
+  },
+});
 
 function stateToButtonProps(
   state: EvidenceState,
@@ -35,8 +49,8 @@ export default function EvidenceButton({ evidenceID }: Props) {
   const { speedFilter } = useContext(GhostSpeedsContext);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const outline = useMemo(() => {
-    let outline = "outline outline-3 outline-offset-[-3px] outline-transparent";
+  const presenceHint = useMemo(() => {
+    let presenceHint: VariantProps<typeof outlineCVA>["presenceHint"] = "none";
     if (evidences.value[evidenceID] == EvidenceState.INDEFINITE) {
       const speedFilteredGhosts = ghosts.filter(speedFilter);
 
@@ -53,19 +67,18 @@ export default function EvidenceButton({ evidenceID }: Props) {
         ),
       );
 
-      if (ghostsIfPresent && !ghostsIfAbsent)
-        "outline outline-3 outline-offset-[-3px] outline-stone-700 dark:outline-stone-100";
+      if (ghostsIfPresent && !ghostsIfAbsent) presenceHint = "mustBePresent";
       else if (ghostsIfAbsent && !ghostsIfPresent)
-        outline = "outline outline-3 outline-offset-[-3px] outline-red-400";
-
-      return outline;
+        presenceHint = "mustBeAbsent";
     }
+
+    return presenceHint;
   }, [count, ghosts, evidenceID, evidences, speedFilter]);
 
   return (
     <div className="grow basis-0 *:w-full" ref={containerRef}>
       <Button
-        className={`${outline}`}
+        className={`${outlineCVA({ presenceHint })}`}
         onClick={() => {
           new Animation(
             new KeyframeEffect(containerRef.current, [{ scale: 0.9 }, {}], {
