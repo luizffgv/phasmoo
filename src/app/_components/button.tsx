@@ -1,4 +1,53 @@
+import { cva } from "class-variance-authority";
 import Link from "next/link";
+
+const buttonCVA = cva(
+  [
+    "flex",
+    "flex-row",
+    "justify-center",
+    "rounded-xl",
+    "px-4",
+    "py-2",
+    "font-bold",
+    "transition-all",
+    "disabled:opacity-50",
+  ],
+  {
+    variants: {
+      color: {
+        primary: [
+          "bg-stone-700",
+          "dark:bg-stone-100",
+          "text-white",
+          "dark:text-stone-700",
+          "hover:brightness-125",
+          "dark:hover:brightness-90",
+          "disabled:hover:brightness-100",
+          "dark:disabled:hover:brightness-100",
+        ],
+        danger: [
+          "bg-red-400",
+          "text-stone-700",
+          "hover:brightness-125",
+          "disabled:hover-brightness-100",
+        ],
+        weak: [
+          "bg-stone-200",
+          "dark:bg-stone-700",
+          "text-inherit",
+          "hover:brightness-90",
+          "dark:hover:brightness-125",
+          "disabled:hover:brightness-100",
+          "dark:disabled:hover:brightness-100",
+        ],
+      },
+    },
+    defaultVariants: {
+      color: "primary",
+    },
+  },
+);
 
 export type Props = {
   children: React.ReactNode;
@@ -37,26 +86,8 @@ export type Props = {
   );
 
 export default function Button(props: Props) {
-  const bg =
-    "danger" in props
-      ? "bg-red-400"
-      : "weak" in props
-        ? "bg-stone-200 dark:bg-stone-700"
-        : "bg-stone-700 dark:bg-stone-100";
-
-  const text =
-    "danger" in props
-      ? "text-stone-700"
-      : "weak" in props
-        ? "text-inherit"
-        : "text-white dark:text-stone-700";
-
-  const hover =
-    "danger" in props
-      ? "hover:brightness-125 disabled:hover:brightness-100"
-      : "weak" in props
-        ? "hover:brightness-90 dark:hover:brightness-125 disabled:hover:brightness-100 dark:disabled:hover:brightness-100"
-        : "hover:brightness-125 dark:hover:brightness-90 disabled:hover:brightness-100 dark:disabled:hover:brightness-100";
+  const color =
+    "danger" in props ? "danger" : "weak" in props ? "weak" : "primary";
 
   return (
     <>
@@ -64,7 +95,7 @@ export default function Button(props: Props) {
         <Link
           href={props.href}
           target={props.target}
-          className={`flex flex-row justify-center rounded-xl px-4 py-2 font-bold transition-all ${text} ${bg} ${hover} ${props.className ?? ""}`}
+          className={`${buttonCVA({ color })} ${props.className ?? ""}`}
           aria-label={props["aria-label"]}
           aria-labelledby={props["aria-labelledby"]}
         >
@@ -72,7 +103,7 @@ export default function Button(props: Props) {
         </Link>
       ) : (
         <button
-          className={`flex flex-row justify-center rounded-xl px-4 py-2 font-bold transition-all disabled:opacity-50 ${text} ${bg} ${hover} ${props.className ?? ""}`}
+          className={`${buttonCVA({ color })} ${props.className ?? ""}`}
           role={props["role"]}
           aria-label={props["aria-label"]}
           aria-checked={props["aria-checked"]}
